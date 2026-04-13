@@ -1,4 +1,3 @@
-import { AuthModule } from './auth/auth.module';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -15,10 +14,9 @@ import { AcessibilidadeModule } from './acessibilidade/acessibilidade.module';
       password: 'root',
       database: 'db_rotainclusiva',
       entities: [Usuario],
-      synchronize: true
+      synchronize: true,
     }),
     UsuarioModule,
-    AuthModule,
     AcessibilidadeModule,
   ],
   controllers: [],
