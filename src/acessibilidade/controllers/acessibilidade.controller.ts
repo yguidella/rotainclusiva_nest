@@ -1,45 +1,44 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
-import { AcessibilidadeService } from './acessibilidade.service';
-import { CreateAcessibilidadeDto } from './dto/create-acessibilidade.dto';
-import { UpdateAcessibilidadeDto } from './dto/update-acessibilidade.dto';
+import { Body, Controller, Delete, Get, HttpCode, HttpStatus, Param, ParseIntPipe, Post, Put } from '@nestjs/common';
+import { AcessibilidadeService } from '../service/acessibilidade.service';
+import { Acessibilidade } from '../entities/acessibilidade.entity';
 
-@Controller('acessibilidade')
+@Controller('/acessibilidades')
 export class AcessibilidadeController {
   constructor(private readonly acessibilidadeService: AcessibilidadeService) {}
 
-  @Post()
-  create(@Body() createAcessibilidadeDto: CreateAcessibilidadeDto) {
-    return this.acessibilidadeService.create(createAcessibilidadeDto);
-  }
-
-  @Get()
-  findAll() {
+  @Get('/all')
+  @HttpCode(HttpStatus.OK)
+  findAll(): Promise<Acessibilidade[]> {
     return this.acessibilidadeService.findAll();
   }
 
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.acessibilidadeService.findOne(+id);
+  @Get('/:id')
+  @HttpCode(HttpStatus.OK)
+  findById(@Param('id', ParseIntPipe) id: number): Promise<Acessibilidade> {
+    return this.acessibilidadeService.findById(id);
   }
 
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateAcessibilidadeDto: UpdateAcessibilidadeDto,
-  ) {
-    return this.acessibilidadeService.update(+id, updateAcessibilidadeDto);
+  @Get('/descricao/:descricao')
+  @HttpCode(HttpStatus.OK)
+  findByDescricao(@Param('descricao') descricao: string): Promise<Acessibilidade[]> {
+    return this.acessibilidadeService.findByDescricao(descricao);
   }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.acessibilidadeService.remove(+id);
+  @Post('/cadastrar')
+  @HttpCode(HttpStatus.CREATED)
+  create(@Body() acessibilidade: Acessibilidade): Promise<Acessibilidade> {
+    return this.acessibilidadeService.create(acessibilidade);
+  }
+
+  @Put('/atualizar')
+  @HttpCode(HttpStatus.OK)
+  update(@Body() acessibilidade: Acessibilidade): Promise<Acessibilidade> {
+    return this.acessibilidadeService.update(acessibilidade);
+  }
+
+  @Delete('/:id')
+  @HttpCode(HttpStatus.NO_CONTENT)
+  delete(@Param('id', ParseIntPipe) id: number) {
+    return this.acessibilidadeService.delete(id);
   }
 }

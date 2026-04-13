@@ -1,4 +1,5 @@
-import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, PrimaryGeneratedColumn, OneToMany } from 'typeorm';
+import { Acessibilidade } from '../../acessibilidade/entities/acessibilidade.entity';
 
 @Entity({ name: 'tb_usuario' })
 export class Usuario {
@@ -17,6 +18,6 @@ export class Usuario {
   @Column({ length: 5000, nullable: true })
   foto!: string;
 
-  //@OneToMany(() => Carona, (carona) => carona.usuario)
-  //caronas!: Carona[];
+  @OneToMany(() => Acessibilidade, (acessibilidade) => acessibilidade.usuario)
+  acessibilidades!: Acessibilidade[];
 }

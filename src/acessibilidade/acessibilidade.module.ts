@@ -1,9 +1,13 @@
 import { Module } from '@nestjs/common';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { Acessibilidade } from './entities/acessibilidade.entity';
 import { AcessibilidadeController } from './controllers/acessibilidade.controller';
 import { AcessibilidadeService } from './service/acessibilidade.service';
 
 @Module({
-  controllers: [AcessibilidadeController],
+  imports: [TypeOrmModule.forFeature([Acessibilidade])],
   providers: [AcessibilidadeService],
+  controllers: [AcessibilidadeController],
+  exports: [AcessibilidadeService],
 })
 export class AcessibilidadeModule {}

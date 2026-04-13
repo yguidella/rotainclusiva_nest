@@ -1,3 +1,4 @@
+import { Acessibilidade } from './acessibilidade/entities/acessibilidade.entity';
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { UsuarioModule } from './usuario/usuario.module';
@@ -13,7 +14,7 @@ import { AcessibilidadeModule } from './acessibilidade/acessibilidade.module';
       username: 'root',
       password: 'root',
       database: 'db_rotainclusiva',
-      entities: [Usuario],
+      entities: [Acessibilidade, Usuario],
       synchronize: true
     }),
     UsuarioModule,
