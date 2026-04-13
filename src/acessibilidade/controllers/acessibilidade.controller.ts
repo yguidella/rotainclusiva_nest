@@ -18,10 +18,10 @@ export class AcessibilidadeController {
     return this.acessibilidadeService.findById(id);
   }
 
-  @Get('/descricao/:descricao')
+  @Get('/tipo/:tipo')
   @HttpCode(HttpStatus.OK)
-  findByDescricao(@Param('descricao') descricao: string): Promise<Acessibilidade[]> {
-    return this.acessibilidadeService.findByDescricao(descricao);
+  findBytipo(@Param('tipo') tipo: string): Promise<Acessibilidade[]> {
+    return this.acessibilidadeService.findBytipo(tipo);
   }
 
   @Post('/cadastrar')

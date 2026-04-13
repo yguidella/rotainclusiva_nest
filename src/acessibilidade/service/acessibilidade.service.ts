@@ -12,7 +12,7 @@ export class AcessibilidadeService {
 
   async findAll(): Promise<Acessibilidade[]> {
     return await this.repository.find({
-      relations: { usuario: true }, // Carrega o usuário dono da acessibilidade
+      relations: { usuario: true },
     });
   }
 
@@ -29,20 +29,18 @@ export class AcessibilidadeService {
     return busca;
   }
 
-  async findByDescricao(descricao: string): Promise<Acessibilidade[]> {
+  async findBytipo(tipo: string): Promise<Acessibilidade[]> {
     return await this.repository.find({
-      where: { descricao: ILike(`%${descricao}%`) },
+      where: { tipo: ILike(`%${tipo}%`) },
       relations: { usuario: true },
     });
   }
 
   async create(acessibilidade: Acessibilidade): Promise<Acessibilidade> {
-    // Como tiramos o DTO, o objeto vem tipado pela própria Entity
     return await this.repository.save(acessibilidade);
   }
 
   async update(acessibilidade: Acessibilidade): Promise<Acessibilidade> {
-    // Verifica se o ID existe antes de tentar atualizar
     await this.findById(acessibilidade.id);
     
     return await this.repository.save(acessibilidade);
