@@ -7,7 +7,7 @@ O **Rota Inclusiva** é uma solução de **Back-end** desenvolvida para enfrenta
 * **Gestão de Usuários:** Cadastro, autenticação e gerenciamento de perfis.
 * **Módulo de Caronas:** Fluxo completo para criação, listagem, atualização e remoção de ofertas de transporte.
 * **Categorização de Acessibilidade:** Gerenciamento dos tipos de suporte e acessibilidade oferecidos.
-* **Cálculo de Previsibilidade:** Lógica especializada (Dev 4) que utiliza os campos de distância e velocidade para gerar o tempo estimado de viagem.
+* **Cálculo de Previsibilidade:** Lógica especializada que utiliza os campos de distância e velocidade para gerar o tempo estimado de viagem.
 
 ---
 
